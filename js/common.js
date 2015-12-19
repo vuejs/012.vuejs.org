@@ -146,8 +146,20 @@
     wrapper.appendChild(link)
   }
 
+  document.querySelector('.version-select').addEventListener('change', function (e) {
+    var version = e.target.value
+    var section = window.location.pathname.match(/\/(\w+?)\//)[1]
+
+    if (version.indexOf('1.') !== 0) {
+      version = version.replace('.', '')
+      window.location.assign('http://' + version + '.vuejs.org/' + section + '/')
+    } else {
+      window.location.assign('http://vuejs.org/' + section + '/')
+    }
+  })
+
   // Search with SwiftType
-  
+
   (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
   (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
   e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
